@@ -1,0 +1,17 @@
+import pandas as pd
+
+email = input("Enter Your Email: ").strip()
+
+user = email[:email.index('@')]
+username = user.title()
+domain = email[email.index('@') + 1:]
+
+#pandas
+csv_file = "user_data.csv"
+df = pd.read_csv(csv_file)
+data_to_append = {"email": email, "username": username, "domain": domain}
+df = df.append(data_to_append, ignore_index=True)
+df.to_csv(csv_file, index=False)
+print(f"Your username is {username} & domain is {domain}")
+
+print("Data appended successfully to", csv_file)
